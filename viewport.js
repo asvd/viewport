@@ -15,8 +15,7 @@
     } else {
         factory((root.viewport = {}));
     }
-}(this,
-function (exports) {
+}(this, function (exports) {
 
     var entries = [];  // each entry contains a viewport with sections
     var ctx = 50;      // context to add for the scroll targets
