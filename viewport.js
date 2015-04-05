@@ -17,7 +17,7 @@
     }
 }(this, function (exports) {
     var entries = [];  // each entry contains a viewport with sections
-    var ctx = 50;      // context to add for the scroll targets
+    var ctx = 50;      // context to substract from the scroll targets
 
     // for better compression
     var VIEWPORT = 'viewport';
