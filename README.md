@@ -17,15 +17,16 @@ In other words, `viewport.js` is similar to
 (https://github.com/sxalexander/jquery-scrollspy), but the advantages
 of `viewport.js` are:
 
-- It does not have any dependencies and works anywhere;
+- It does not have any dependencies, it is written on vanilla
+  javascript and works anywhere;
 
 - It's size is only 1548 bytes minified;
 
-- It has very simple and flexible API which reports:
+- It has very simple and flexible API which exposes:
 
- - a section currently visible in the scrollable viewport;
+ - a section currently visible in the viewport;
 
- - current position of a viewport in both dimensions relatively to
+ - current position of the viewport in both dimensions relatively to
    every section;
 
  - current positions of the viewport edges relatively to every
@@ -93,8 +94,7 @@ Section elements are equipped with the following properties:
   wish to display a viewport position as a range (like on a
   scrollbar).
 
-There are also the similar properties, but for the horizontal
-dimension:
+There are also the similar properties the horizontal dimension:
 
 - `viewportLeftLocation` - horizontal scrolling progress of a viewport
   relatively to the section;
@@ -105,18 +105,20 @@ dimension:
 
 The following properties can be used to determine where the viewport
 should be scrolled programmatically in order to display the beginning
-of the section:
+of the section (or to put the section in the center of the viewport,
+in case if the section is small enough to be fully displayed within
+the viewport):
 
 - `viewportScrollTopTarget`
 
 - `viewportScrollLeftTarget`
 
-You will need this properties if you have a navigation component which
-should scroll the viewport to the given section upon click. In this
-case also have a look at the
+You will need these properties if you have a navigation component
+which should scroll the viewport to the given section upon click. In
+this case also have a look at the
 [natural-scroll](http://github.com/asvd/natural-scroll) library which
-enables smooth and natural programmatical scrolling.
-
+enables smooth and natural programmatical scrolling (it is enabled on
+the [demo page](http://asvd.github.io/viewport)).
 
 If a viewport is not the whole page, add the `viewport` class to the
 viewport element (it should be the element which actually performs
@@ -136,8 +138,9 @@ scrolling):
 ```
 
 
-A viewport element also has the `currentSection` property which points
-to the section element currently displayed in the viewport:
+A viewport element also exposes the `currentSection` property which
+points to the section element currently displayed in the viewport
+(more precisely, the section which is the closest to the viewport):
 
 
 ```js
@@ -150,9 +153,9 @@ about to create a navigation component. This component will be
 relevant to the particular application / web-page and therefore should
 provide more convenient navigation than the ordinary scrollbar. In
 this case it might be reasonable to replace the scrollbar with the
-[intence](http://asvd.github.io/intence) indicator: It does not
+[intence](http://asvd.github.io/intence) indicator: it does not
 contain active elements to control the scrolling position (but you
-don't need it anymore, since you have the custom navigation), and the
-scrollable area is designated in much more clear and intuitive way
+don't need them anymore, since you have the custom navigation), and
+the scrollable area is designated in much more clear and intuitive way
 (comparing to an ordinary scrollbar).
 
