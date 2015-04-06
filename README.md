@@ -94,7 +94,7 @@ Section elements are equipped with the following properties:
   you wish to display a viewport position as a range (like on a
   scrollbar).
 
-There are also the similar properties the horizontal dimension:
+There are also the similar properties for the horizontal dimension:
 
 - `viewportLeftLocation` - horizontal scrolling progress of a viewport
   relatively to the section;
