@@ -17,7 +17,7 @@
     }
 }(this, function (exports) {
     var entries = [];  // each entry contains a viewport with sections
-    var ctx = 50;      // context to substract from the scroll targets
+    var ctx = 40;      // context to substract from the scroll targets
 
     // for better compression
     var VIEWPORT = 'viewport';
@@ -176,7 +176,7 @@
 
                         section[VIEWPORT+Top+Location] = vTopLocation;
                         section[VIEWPORT+Left+Location] = vLeftLocation;
-
+                        
                         section[VIEWPORT+Scroll+Top+Target] =
                             scroller[scroll+Top] +
                             Math_min(scrollTopToStart, scrollTopToMiddle);
