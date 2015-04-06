@@ -71,8 +71,8 @@ Section elements are equipped with the following properties:
 
 - `viewportTopLocation` - a number designating the vertical scrolling
   position of the viewport relatively to the section. If the section
-  is currently visible in the viewport, the number is between 0 and
-  1. Value < 0 means that section is above the viewport; value > 1
+  is currently visible in the viewport, the number is between 0
+  and 1. Value < 0 means that section is above the viewport; value > 1
   means that the section is below the area displayed in the
   viewport. The `viewportTopLocation` property designates a progress
   of scrolling through the section.
