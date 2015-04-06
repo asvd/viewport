@@ -2,11 +2,11 @@ viewport.js
 ===========
 
 
-`viewport.js` is a small javascript library which ships the sections
-of a page with additional properties which reflect the location of a
-scrollable viewport relatively to them. A custom scrolling indicator
-or an interactive navigation menu can then represent the viewport
-position using these properties.
+`viewport.js` is a small javascript library which the sections of a
+page with additional properties reflecting the location of a
+scrollable viewport relatively to the sections. A custom scrolling
+indicator or an interactive navigation menu can then represent the
+viewport position using these properties.
 
 [Demo](http://asvd.github.io/viewport) / [and its
 source](https://github.com/asvd/asvd.github.io/tree/master/viewport)
