@@ -89,9 +89,9 @@ Section elements are equipped with the following properties:
   `viewportTopStart` represents the exact location of the top edge,
   and not of the viewport as a whole.
 
-- `viewportTopEnd` - same as `viewportTopEnd`, but for the bottom edge
-  of the viewport. You will need to use these two properties if you
-  wish to display a viewport position as a range (like on a
+- `viewportTopEnd` - same as `viewportTopStart`, but for the bottom
+  edge of the viewport. You will need to use these two properties if
+  you wish to display a viewport position as a range (like on a
   scrollbar).
 
 There are also the similar properties the horizontal dimension:
