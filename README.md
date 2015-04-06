@@ -115,10 +115,10 @@ the viewport):
 
 You will need these properties if you have a navigation component
 which should scroll the viewport to the given section upon click. In
-this case also have a look at the
-[natural-scroll](http://github.com/asvd/natural-scroll) library which
-enables smooth and natural programmatical scrolling (it is enabled on
-the [demo page](http://asvd.github.io/viewport)).
+this case also have a look at the [natural
+scroll](http://github.com/asvd/naturalScroll) library which enables
+smooth and natural programmatical scrolling (it is enabled on the
+[demo page](http://asvd.github.io/viewport)).
 
 If a viewport is not the whole page, add the `viewport` class to the
 viewport element (it should be the element which actually performs
