@@ -17,22 +17,26 @@ In other words, `viewport.js` is similar to
 (https://github.com/sxalexander/jquery-scrollspy), but the advantages
 of `viewport.js` are:
 
-- It does not have dependencies and works anywhere;
+- It does not have any dependencies and works anywhere;
 
 - It's size is only 1548 bytes minified;
 
 - It has very simple and flexible API which reports:
 
- - a section which is currently visible in the scrollable viewport;
+ - the current section currentyl visible in the scrollable viewport;
 
- - current position of a viewport in every dimension relatively to each section;
+ - current position of a viewport in both dimensions relatively to
+   each section;
 
- - current positions of viewport start and end borders in every dimension relatively to each section;
+ - current positions of a viewport start and end borders in both
+   dimensions relatively to each section;
 
- - scroll targets in every dimension to scroll the viewport to to get to any section.
+ - scroll targets the viewport should be scrolled to in order to
+   display a particular section (also in both dimensions and for each
+   section).
 
 
-### Installation
+### Usage
 
 Download the
 [distribution](https://github.com/asvd/viewport/releases/download/v0.0.1/viewport-0.0.1.tar.gz),
@@ -42,7 +46,6 @@ UMD module):
 ```html
 <script src="viewport.js"></script>
 ```
-
 
 Add the `section` class to every section to be equipped with the
 additional viewport position properties:
