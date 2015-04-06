@@ -112,7 +112,10 @@ of the section:
 - `viewportScrollLeftTarget`
 
 You will need this properties if you have a navigation component which
-should scroll the viewport to the given section upon click.
+should scroll the viewport to the given section upon click. In this
+case also have a look at the
+[natural-scroll](http://github.com/asvd/natural-scroll) library which
+enables smooth and natural programmatical scrolling.
 
 
 If a viewport is not the whole page, add the `viewport` class to the
@@ -147,7 +150,7 @@ about to create a navigation component. This component will be
 relevant to the particular application / web-page and therefore should
 provide more convenient navigation than the ordinary scrollbar. In
 this case it might be reasonable to replace the scrollbar with the
-[Intence](http://asvd.github.io/intence) indicator: It does not
+[intence](http://asvd.github.io/intence) indicator: It does not
 contain active elements to control the scrolling position (but you
 don't need it anymore, since you have the custom navigation), and the
 scrollable area is designated in much more clear and intuitive way
