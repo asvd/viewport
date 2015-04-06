@@ -47,8 +47,8 @@ UMD module):
 <script src="viewport.js"></script>
 ```
 
-Add the `section` class to every section to be equipped with the
-additional viewport position properties:
+Add the `section` class to every section which needs to be equipped
+with the additional viewport position properties:
 
 ```html
 <div id=firstSection class=section>
@@ -103,20 +103,20 @@ dimension:
 
 - `viewportLeftEnd` - veiwport right edge position;
 
-These properties allow to determine where the viewport should be
-programmatically scrolled in order to display the beginning of the
-section:
+The following properties can be used to determine where the viewport
+should be scrolled programmatically in order to display the beginning
+of the section:
 
 - `viewportScrollTopTarget`
 
 - `viewportScrollLeftTarget`
 
 You will need this properties if you have a navigation component which
-should scroll the viewport to the given section upon the click.
+should scroll the viewport to the given section upon click.
 
 
-If the scrollable viewport is not the whole page, add the `viewport`
-class to it (it should be the element which actually performs
+If a viewport is not the whole page, add the `viewport` class to the
+viewport element (it should be the element which actually performs
 scrolling):
 
 
@@ -134,8 +134,7 @@ scrolling):
 
 
 A viewport element also has the `currentSection` property which points
-to the section element which is currently displayed in the viewport
-(actually the section which is the closest to the viewport):
+to the section element currently displayed in the viewport:
 
 
 ```js
@@ -143,11 +142,14 @@ var currentSection = document.getElementById('myViewport').currentSection;
 ```
 
 
-
-If you are going to use `viewport.js`, you are likely going to create
-a navigation component which is relevant to the particular application
-/ web-page and should work for the navigation better than the ordinary
-scrollbar. In this case it might be reasonable to replace the
-scrollbar with [intence](http://asvd.github.io/intence) indicator
-which additionally designates the scrollable area.
+If you are going to use the `viewport.js` library, you are likely
+about to create a navigation component. This component will be
+relevant to the particular application / web-page and therefore should
+provide more convenient navigation than the ordinary scrollbar. In
+this case it might be reasonable to replace the scrollbar with the
+[Intence](http://asvd.github.io/intence) indicator: It does not
+contain active elements to control the scrolling position (but you
+don't need it anymore, since you have the custom navigation), and the
+scrollable area is designated in much more clear and intuitive way
+(comparing to an ordinary scrollbar).
 
