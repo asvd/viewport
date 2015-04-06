@@ -30,36 +30,35 @@
     var bottom = 'bottom';
     var left   = 'left';
     var right  = 'right';
-
+      
     var Top    = 'Top';
-    var Middle = 'Middle';
-    var Bottom = 'Bottom';
     var Left   = 'Left';
-    var Center = 'Center';
-    var Right  = 'Right';
-
-    var Scroll = 'Scroll';
-    var Target = 'Target'
-    var ScrollTopTarget = Scroll + Top + Target;
-    var ScrollLeftTarget = Scroll + Left + Target;
-
-    var scroll = 'scroll';
-    var resize = 'resize';
-
-    var length = 'length';
-    var _window = window;
+      
+    var Location = 'Location';
+    var Start    = 'Start';
+    var End      = 'End';
+    var Scroll   = 'Scroll';
+    var Target   = 'Target'
+    var scroll   = 'scroll';
+    var resize   = 'resize';
+    var length   = 'length';
+    var _window  = window;
     var _document = document;
-
-    var min = Math.min;
-
+    var _null = null;
+    var _Math = Math;
+    var Math_min = _Math.min;
+    var Math_max = _Math.max;
+    var Math_abs = _Math.abs;
+      
+      
     var reset = function() {
         var i, j, isBody, hasViewportClass, classes,
-            listener, section, viewport, entry, sections;
+            listener, section, viewport, scroller, entry, sections;
 
         // running through existing entries and removing listeners
         for (i = 0; i < entries[length]; i++) {
-            listener = entries[i].v.vpl;
-            entries[i].v[removeEventListener](scroll, listener, 0);
+            listener = entries[i].r.vpl;
+            entries[i].r[removeEventListener](scroll, listener, 0);
             _window[removeEventListener](resize, listener, 0);
         }
 
@@ -83,7 +82,6 @@
                 }
 
                 if (isBody || hasViewportClass) {
-                    viewport = viewport.scroller||viewport;
                     break;
                 }
 
@@ -91,7 +89,7 @@
             } while(1);
 
             // searching for exisiting entry for the viewport
-            entry = null;
+            entry = _null;
             for (j = 0; j < entries[length]; j++) {
                 if (entries[j].v == viewport) {
                     entry = entries[j];
@@ -100,59 +98,105 @@
             }
 
             if (!entry) {
-                // creating a new entry for the viewport
+                scroller = viewport.scroller||viewport;
+                // a new entry for the viewport
                 entry = {
                     v : viewport,
+                    r : scroller,
                     s : []  // list of all sections
                 };
 
                 // listener invoked upon the viewport scroll
-                viewport.vpl = (function(entry) { return function() {
-                    var viewport = entry.v;
+                scroller.vpl = (function(entry) { return function() {
+                    var scroller = entry.r;
+                    var vRect = scroller[getBoundingClientRect]();
+
+                    var vTop    = vRect[top];
+                    var vLeft   = vRect[left];
+                    var vBottom = vRect[bottom];
+                    var vRight  = vRect[right];
+
+                    var vMiddle = (vBottom + vTop)/2;
+                    var vCenter = (vLeft + vRight)/2;
+
+                    // viewport scroll ratio, 0..1
+                    var rateVert = scroller[scroll+Top] /
+                        (scroller.scrollHeight - vRect.height);
+                    var rateHoriz = scroller[scroll+Left] /
+                        (scroller.scrollWidth - vRect.width);
+                                                      
+                    // viewport location point moves along with
+                    // viewport scroll to always meet the borders
+                    var vMiddlePos = vTop + (vBottom-vTop)*rateVert;
+                    var vCenterPos = vLeft + (vRight-vLeft)*rateHoriz;
 
                     // updating the data for each section
+                    // (and searching for the closest section)
+                    var closest = _null;
+                    var minDist = _null;
                     for (var i = 0; i < entry.s[length]; i++) {
                         var section = entry.s[i];
-                        
-                        var vRect = viewport[getBoundingClientRect]();
+
                         var sRect = section[getBoundingClientRect]();
-                        var sHeight = sRect[bottom] - sRect[top];
-                        var sWidth  = sRect[right] - sRect[left];
-                        var vMiddle = (vRect[bottom] + vRect[top])/2;
-                        var vCenter = (vRect[left] + vRect[right])/2;
-                        var sMiddle = (sRect[bottom] + sRect[top])/2;
-                        var sCenter = (sRect[left] + sRect[right])/2;
-                        var topOffset = vRect[top] - sRect[top];
-                        var leftOffset = vRect[left] - sRect[left];
+                        var sTop = sRect[top];
+                        var sLeft = sRect[left];
+                        var sHeight = sRect[bottom] - sTop;
+                        var sWidth  = sRect[right] - sLeft;
 
-                        section[VIEWPORT+Top] = topOffset / sHeight;
+                        var topOffset = vTop - sTop;
+                        var leftOffset = vLeft - sLeft;
 
-                        section[VIEWPORT+Middle] =
-                            (vMiddle - sRect[top]) / sHeight;
+                        // viewport location related to the section
+                        var vLeftLocation = (vCenterPos - sLeft) / sWidth;
+                        var vTopLocation =  (vMiddlePos - sTop)  / sHeight;
 
-                        section[VIEWPORT+Bottom] =
-                            (vRect[bottom] - sRect[top]) / sHeight;
+                        // viewport to section distance, normalized
+                        var vVertDist =
+                            Math_max( 0, Math_abs(vTopLocation - 0.5) - 0.5);
+                        var vHorizDist =
+                            Math_max(0, Math_abs(vLeftLocation - 0.5) - 0.5);
 
-                        section[VIEWPORT+Left] = leftOffset / sWidth;
+                        // squared, but we only need to compare
+                        var dist = vVertDist*vVertDist + vHorizDist*vHorizDist;
 
-                        section[VIEWPORT+Center] =
-                            (vCenter - sRect[left]) / sWidth;
+                        var scrollTopToStart = -topOffset - ctx;
+                        var scrollTopToMiddle =
+                            (sRect[bottom] + sTop)/2 - vMiddle;
 
-                        section[VIEWPORT+Right] =
-                            (vRect[right] - sRect[left]) / sWidth;
+                        var scrollLeftToStart = -leftOffset - ctx;
+                        var scrollLeftToCenter =
+                            (sLeft + sRect[right])/2 - vCenter;
 
-                        section[VIEWPORT+ScrollTopTarget] =
-                            viewport[scroll+Top] +
-                            min(sMiddle - vMiddle, -topOffset - ctx);
+                        // updating section data concerning the viewport
+                        section[VIEWPORT+Top+Start] = topOffset / sHeight;
+                        section[VIEWPORT+Top+End] = (vBottom - sTop) / sHeight;
 
-                        section[VIEWPORT+ScrollLeftTarget] =
-                            viewport[scroll+Left] +
-                            min(sCenter - vCenter, -leftOffset - ctx);
+                        section[VIEWPORT+Left+Start] = leftOffset / sWidth;
+                        section[VIEWPORT+Left+End] = (vRight - sLeft) / sWidth;
+
+                        section[VIEWPORT+Top+Location] = vTopLocation;
+                        section[VIEWPORT+Left+Location] = vLeftLocation;
+
+                        section[VIEWPORT+Scroll+Top+Target] =
+                            scroller[scroll+Top] +
+                            Math_min(scrollTopToStart, scrollTopToMiddle);
+
+                        section[VIEWPORT+Scroll+Left+Target] =
+                            scroller[scroll+Left] +
+                            Math_min(scrollLeftToStart, scrollLeftToCenter);
+                        
+                        // checking if the section is closer to the viewport
+                        if (minDist === _null || minDist > dist) {
+                            minDist = dist;
+                            closest = section;
+                        }
                     }
+
+                    entry.v.currentSection = closest;
                 }})(entry);
 
-                viewport[addEventListener](scroll, entry.v.vpl, 0);
-                _window[addEventListener](resize, entry.v.vpl, 0);
+                scroller[addEventListener](scroll, scroller.vpl, 0);
+                _window[addEventListener](resize, scroller.vpl, 0);
 
                 entries.push(entry);
             }
@@ -163,7 +207,7 @@
 
         // initially setting-up the properties
         for (i = 0; i < entries[length]; i++) {
-            entry.v.vpl();
+            entry.r.vpl();
         }
     }
 
