@@ -23,7 +23,7 @@ of `viewport.js` are:
 
 - It has very simple and flexible API which reports:
 
- - the section currently visible in the scrollable viewport;
+ - a section currently visible in the scrollable viewport;
 
  - current position of a viewport in both dimensions relatively to
    each section;
