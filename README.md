@@ -2,8 +2,8 @@ viewport.js
 ===========
 
 
-`viewport.js` is a small javascript library which the sections of a
-page with additional properties reflecting the location of a
+`viewport.js` is a small javascript library which ships the sections
+of a page with additional properties reflecting the location of a
 scrollable viewport relatively to the sections. A custom scrolling
 indicator or an interactive navigation menu can then represent the
 viewport position using these properties.
@@ -26,13 +26,13 @@ of `viewport.js` are:
  - a section currently visible in the scrollable viewport;
 
  - current position of a viewport in both dimensions relatively to
-   each section;
+   every section;
 
- - current positions of a viewport start and end borders in both
-   dimensions relatively to each section;
+ - current positions of the viewport edges relatively to every
+   section;
 
  - scroll targets the viewport should be scrolled to in order to
-   display a particular section (also in both dimensions and for each
+   display a particular section (also in both dimensions and for every
    section).
 
 
@@ -60,8 +60,9 @@ additional viewport position properties:
 </div>
 ```
 
-Now you can fetch the section elements and read the viewport
-properties which are updated on page scroll:
+This is it - now the sections are shipped with additional properties
+and you can fetch them on viewport scroll and reflect the scrolling
+state in an indicator:
 
 ```js
 var firstSection = document.getElementById('firstSection');
@@ -73,23 +74,23 @@ var viewportLocation = firstSection.viewportTopLocation;
 
 Section elements are equipped with the following properties:
 
-- `viewportTopLocation` - a number designating the vertical scrolling
-  position of the viewport relatively to the section. If the section
-  is currently visible in the viewport, the number is between 0
-  and 1. Value < 0 means that section is above the viewport; value > 1
+- `viewportTopLocation` - vertical scrolling position of the viewport
+  relatively to the section. If the section is currently visible in
+  the viewport, the number is between 0 (section start) and 1 (section
+  end). Value < 0 means that section is above the viewport; value > 1
   means that the section is below the area displayed in the
   viewport. The `viewportTopLocation` property designates a progress
-  of scrolling through the section.
+  of the viewport scrolling through the section.
 
 - `viewportTopStart` - a number designating the current location of
-  the top border of the viewport relatively to the section. Value has
+  the top edge of the viewport relatively to the section. Value has
   the same meaning as for the `viewportTopLocation` property, but
-  `viewportTopStart` represents the exact location of the top border,
-  and not of the whole viewport.
+  `viewportTopStart` represents the exact location of the top edge,
+  and not of the viewport as a whole.
 
-- `viewportTopEnd` - same as `viewportTopEnd`, but for the bottom
-  border of the viewport. You will need to use these two properties if
-  you wish to display a viewport position as a range (like on a
+- `viewportTopEnd` - same as `viewportTopEnd`, but for the bottom edge
+  of the viewport. You will need to use these two properties if you
+  wish to display a viewport position as a range (like on a
   scrollbar).
 
 There are also the similar properties, but for the horizontal
@@ -98,9 +99,9 @@ dimension:
 - `viewportLeftLocation` - horizontal scrolling progress of a viewport
   relatively to the section;
 
-- `viewportLeftStart` position of a left border of the viewport;
+- `viewportLeftStart` - viewport left edge position;
 
-- `viewportLeftEnd` position of a right border of the viewport;
+- `viewportLeftEnd` - veiwport right edge position;
 
 These properties allow to determine where the viewport should be
 programmatically scrolled in order to display the beginning of the
