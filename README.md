@@ -17,12 +17,13 @@ In other words, `viewport.js` is similar to
 (https://github.com/sxalexander/jquery-scrollspy), but the advantages
 of `viewport.js` are:
 
-- It does not have any dependencies, it is written on vanilla
-  javascript and works anywhere;
+- it does not have any dependencies;
 
-- It's size is only 1548 bytes minified;
+- it is written on vanilla javascript and works anywhere;
 
-- It has very simple and flexible API which exposes:
+- its size is only 1548 bytes minified;
+
+- it has very simple and flexible API which exposes:
 
  - a section currently visible in the viewport;
 
