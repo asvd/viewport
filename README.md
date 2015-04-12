@@ -40,7 +40,7 @@ following advantages:
 ### Usage
 
 Download the
-[distribution](https://github.com/asvd/viewport/releases/download/v0.0.1/viewport-0.0.1.tar.gz),
+[distribution](https://github.com/asvd/viewport/releases/download/v0.0.2/viewport-0.0.2.tar.gz),
 unpack it and load the `viewport.js` in a preferable way (that is an
 UMD module):
 
@@ -142,9 +142,10 @@ the element which actually performs scrolling:
 </div>
 ```
 
-The viewport element contains the `currentSection` property which
-points to the section element currently visible in the viewport
-(more precisely, the section which is the closest to the viewport):
+The viewport element additionally contains the `currentSection`
+property which points to the section element currently visible in the
+viewport (more precisely, the section which is the closest to the
+viewport):
 
 
 ```js
@@ -153,6 +154,6 @@ var currentSection = document.getElementById('myViewport').currentSection;
 
 If you create a navigation panel reflecting the scrolling state,
 replace the scrollbars with [intence](http://asvd.github.io/intence)
-indicator: it designates the scrollable area in more clear and
-intuitive way comparing to the ordinary scrollbar.
+indicator: it designates a scrollable area in more clear and intuitive
+way comparing to the ordinary scrollbar.
 
