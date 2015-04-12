@@ -62,7 +62,7 @@ Add the `section` class to the sections:
 
 This is it - now the sections are shipped with additional properties
 and you can fetch them on viewport scroll in order to reflect the
-scrolling state somehow:
+scrolling state in an indicator:
 
 ```js
 // use document.body if the whole page is scrollable
