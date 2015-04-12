@@ -10,7 +10,7 @@ provide incredible user experience by display the precise scrolling
 position:
 
 [Demo](http://asvd.github.io/viewport) / [and its
-source](https://github.com/asvd/asvd.github.io/tree/master/viewport).
+source](https://github.com/asvd/asvd.github.io/tree/master/viewport)
 
 In other words, `viewport.js` is similar to
 [other](http://davidwalsh.name/js/scrollspy)
@@ -22,7 +22,7 @@ of `viewport.js` are:
 
 - it is written on vanilla javascript and works anywhere;
 
-- its size is only 1548 bytes minified;
+- its size is only 1581 bytes minified;
 
 - it has very simple and flexible API which exposes:
 
@@ -86,8 +86,8 @@ Section elements are equipped with the following properties:
   of the viewport scrolling through the section. Since a viewport is
   not a point, the `viewportTopLocation` property actually designates
   a position of a special point within a viewport somwhere between the
-  viewport top and bottom edeges. The point moves from top to bottom
-  of the viewport as long as the viewport is scrolled.
+  viewport top and bottom edges. The point moves from top to bottom of
+  the viewport as long as the viewport is scrolled.
 
 - `viewportTopStart` - a number designating the current location of
   the top edge of the viewport relatively to the section. Value has
