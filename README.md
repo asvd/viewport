@@ -89,19 +89,20 @@ Section elements contain the following properties:
   section. If the section is visible in the viewport, the value is
   between 0 (section start) and 1 (section end). Values <0 or >1 mean
   that the section is outside of the viewport. This property reflects
-  the location of the viewport as a whole - therefore use it if you
-  want to display a scrolling progress through the section as a single
-  value.
+  the location of the viewport as a whole;
 
 - `veiwportTopStart` - precise position of the top edge of the
   viewport relatively to the section. The value has the same meaning
-  as for the `viewportTopLocation`.
+  as for the `viewportTopLocation`;
 
-- `viewportTopEnd` - same for the bottom border of the viewport. Use
-  `viewportTopStart` and `viewportTopEnd` properties together if you
-  wish to display the scrolling position as a range (like on a
-  scrollbar), or if you need to know the rate of how much the viewport
-  covers the section.
+- `viewportTopEnd` - same for the bottom border of the viewport.
+
+
+Use `viewportTopLocation` if you want to display a scrolling progress
+as a single value. Use `viewportTopStart` and `viewportTopEnd`
+properties together if you need to display the scrolling position as a
+range (like on a scrollbar), or if you need to know the rate of how
+much the viewport covers the section.
 
 There are also the similar properties for the horizontal scrolling
 direction:
