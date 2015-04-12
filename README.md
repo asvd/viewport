@@ -7,7 +7,9 @@ of a page with additional properties reflecting the location of a
 scrollable viewport relatively to them. Using these properties a
 custom scrolling indicator or an interactive navigation menu can
 provide incredible user experience by display the precise scrolling
-position: [demo](http://asvd.github.io/viewport) / [and its
+position:
+
+[Demo](http://asvd.github.io/viewport) / [and its
 source](https://github.com/asvd/asvd.github.io/tree/master/viewport).
 
 In other words, `viewport.js` is similar to
