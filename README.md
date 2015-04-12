@@ -79,10 +79,14 @@ Section elements are equipped with the following properties:
 - `viewportTopLocation` - vertical scrolling position of the viewport
   relatively to the section. If the section is currently visible in
   the viewport, the number is between 0 (section start) and 1 (section
-  end). Value < 0 means that section is above the viewport; value > 1
-  means that the section is below the area displayed in the
+  end). Value < 0 means that section is below the viewport; value > 1
+  means that the section is above the area displayed in the
   viewport. The `viewportTopLocation` property designates a progress
-  of the viewport scrolling through the section.
+  of the viewport scrolling through the section. Since a viewport is
+  not a point, the `viewportTopLocation` property actually designates
+  a position of a special point within a viewport somwhere between the
+  viewport top and bottom edeges. The point moves from top to bottom
+  of the viewport as long as the viewport is scrolled.
 
 - `viewportTopStart` - a number designating the current location of
   the top edge of the viewport relatively to the section. Value has
@@ -90,8 +94,8 @@ Section elements are equipped with the following properties:
   `viewportTopStart` represents the exact location of the top edge,
   and not of the viewport as a whole.
 
-- `viewportTopEnd` - same as `viewportTopStart`, but for the bottom
-  edge of the viewport. You will need to use these two properties if
+- `viewportTopEnd` - similar property reflecting the position of the
+  viewport bottom edge. You will need to use these two properties if
   you wish to display a viewport position as a range (like on a
   scrollbar).
 

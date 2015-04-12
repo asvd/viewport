@@ -107,7 +107,8 @@
                 };
 
                 // listener invoked upon the viewport scroll
-                scroller.vpl = (function(entry) { return function() {
+                scroller.vpl = (function(entry) {
+                return function() {
                     var scroller = entry.r;
                     var vRect = scroller[getBoundingClientRect]();
 
@@ -119,11 +120,13 @@
                     var vMiddle = (vBottom + vTop)/2;
                     var vCenter = (vLeft + vRight)/2;
 
+                    // full scorlling amount
+                    var maxVert = scroller.scrollHeight - vRect.height;
+                    var maxHoriz = scroller.scrollWidth - vRect.width;
+                    
                     // viewport scroll ratio, 0..1
-                    var rateVert = scroller[scroll+Top] /
-                        (scroller.scrollHeight - vRect.height);
-                    var rateHoriz = scroller[scroll+Left] /
-                        (scroller.scrollWidth - vRect.width);
+                    var rateVert = scroller[scroll+Top] / maxVert;
+                    var rateHoriz = scroller[scroll+Left] / maxHoriz;
                                                       
                     // viewport location point moves along with
                     // viewport scroll to always meet the borders
@@ -178,12 +181,26 @@
                         section[VIEWPORT+Left+Location] = vLeftLocation;
                         
                         section[VIEWPORT+Scroll+Top+Target] =
-                            scroller[scroll+Top] +
-                            Math_min(scrollTopToStart, scrollTopToMiddle);
+                            Math.max(
+                                0,
+                                Math_min(
+                                    maxVert,
+                                    scroller[scroll+Top] +
+                                        Math_min(scrollTopToStart,
+                                                 scrollTopToMiddle)
+                                )
+                            );
 
                         section[VIEWPORT+Scroll+Left+Target] =
-                            scroller[scroll+Left] +
-                            Math_min(scrollLeftToStart, scrollLeftToCenter);
+                            Math_max(
+                                0,
+                                Math_min(
+                                    maxHoriz,
+                                    scroller[scroll+Left] +
+                                        Math_min(scrollLeftToStart,
+                                                 scrollLeftToCenter)
+                                )
+                            );
                         
                         // checking if the section is closer to the viewport
                         if (minDist === _null || minDist > dist) {
