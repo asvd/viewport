@@ -22,7 +22,7 @@ following advantages:
 
 - its size is only 1581 bytes minified;
 
-- it has simple and flexible API which shows:
+- it has a simple and flexible API which shows:
 
  - which section is currently displayed in the viewport;
 
@@ -45,8 +45,7 @@ UMD module):
 <script src="viewport.js"></script>
 ```
 
-Add the `section` class to every section which needs to be equipped
-with the additional viewport position properties:
+Add the `section` class to the sections:
 
 ```html
 <div id=firstSection class=section>
@@ -63,10 +62,21 @@ and you can fetch them on viewport scroll and reflect the scrolling
 state in an indicator:
 
 ```js
+// use document.body if the whole page is scrollable
+var viewport = document.getElementById('viewport');
 var firstSection = document.getElementById('firstSection');
 
-// location of a viewport relatively to the first section
-var viewportLocation = firstSection.viewportTopLocation;
+viewport.addEventListener(
+    'scroll',
+    function() {
+        var location = firstSection.viewportTopLocation;
+        console.log(
+            'The viewport is at ' + location +
+            ' relatively to the first section'
+        );
+    },
+    false
+);
 ```
 
 
