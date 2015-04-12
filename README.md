@@ -8,8 +8,11 @@ position relatively to the sections. Using these properties you can
 create a custom scrolling indicator or a navigation menu precisely
 reflecting the scrolling state:
 
-[Demo](http://asvd.github.io/viewport) / [and its
-source](https://github.com/asvd/asvd.github.io/tree/master/viewport)
+- [demo page](http://asvd.github.io/viewport) / [and its
+source](https://github.com/asvd/asvd.github.io/tree/master/viewport);
+
+- [home page of intence project](http://asvd.github.io/intence) also
+  uses `viewport.js` for its navigation menu.
 
 In other words, `viewport.js` is similar to
 [other](http://davidwalsh.name/js/scrollspy)
@@ -80,64 +83,54 @@ viewport.addEventListener(
 ```
 
 
-Section elements are equipped with the following properties:
+Section elements contain the following properties:
 
-- `viewportTopLocation` - vertical scrolling position of the viewport
-  relatively to the section. If the section is currently visible in
-  the viewport, the number is between 0 (section start) and 1 (section
-  end). Value < 0 means that section is below the viewport; value > 1
-  means that the section is above the area displayed in the
-  viewport. The `viewportTopLocation` property designates a progress
-  of the viewport scrolling through the section. Since a viewport is
-  not a point, the `viewportTopLocation` property actually designates
-  a position of a special point within a viewport somwhere between the
-  viewport top and bottom edges. The point moves from top to bottom of
-  the viewport as long as the viewport is scrolled.
+- `viewportTopLoctaion` - progress of a viewport scrolling through the
+  section. If the section is visible in the viewport, the value is
+  between 0 (section start) and 1 (section end). Values <0 or >1 mean
+  that the section is outside of the viewport. This property reflects
+  the location of the viewport as a whole - therefore use it if you
+  want to display a scrolling progress through the section as a single
+  value.
 
-- `viewportTopStart` - a number designating the current location of
-  the top edge of the viewport relatively to the section. Value has
-  the same meaning as for the `viewportTopLocation` property, but
-  `viewportTopStart` represents the exact location of the top edge,
-  and not of the viewport as a whole.
+- `veiwportTopStart` - precise position of the top edge of the
+  viewport relatively to the section. The value has the same meaning
+  as for the `viewportTopLocation`.
 
-- `viewportTopEnd` - similar property reflecting the position of the
-  viewport bottom edge. You will need to use these two properties if
-  you wish to display a viewport position as a range (like on a
-  scrollbar).
+- `viewportTopEnd` - same for the bottom border of the viewport. Use
+  `viewportTopStart` and `viewportTopEnd` properties together if you
+  wish to display the scrolling position as a range (like on a
+  scrollbar), or if you need to know the rate of how much the viewport
+  covers the section.
 
-There are also the similar properties for the horizontal dimension:
+There are also the similar properties for the horizontal scrolling
+direction:
 
-- `viewportLeftLocation` - horizontal scrolling progress of a viewport
-  relatively to the section;
+- `viewportLeftLocation` - horizontal scrolling position of the
+  viewport relatively to the section;
 
 - `viewportLeftStart` - viewport left edge position;
 
 - `viewportLeftEnd` - veiwport right edge position;
 
-The following properties can be used to determine where the viewport
-should be scrolled programmatically in order to display the beginning
-of the section (or to put the section in the center of the viewport,
-in case if the section is small enough to be fully displayed within
-the viewport):
+The following properties contain the scroll targets where the viewport
+should be scrolled in order to display a particular section:
 
 - `viewportScrollTopTarget`
 
 - `viewportScrollLeftTarget`
 
-You will need these properties if you have a navigation component
-which should scroll the viewport to the given section upon click. In
-this case also have a look at the [natural
-scroll](http://github.com/asvd/naturalScroll) library which enables
-smooth and natural programmatical scrolling (it is enabled on the
-[demo page](http://asvd.github.io/viewport)).
+You will need them to determine where to scroll the viewport when user
+clicks a menu button pointing to the section. Always use [natural
+scroll](http://github.com/asvd/naturalScroll) when scrolling
+programmatically.
 
 If a viewport is not the whole page, add the `viewport` class to the
-viewport element (it should be the element which actually performs
-scrolling):
+the element which actually performs scrolling:
 
 
 ```html
-<div class=viewport>
+<div class=viewport id=myViewport>
   <div id=firstSection class=section>
       First section content goes here...
   </div>
@@ -148,9 +141,8 @@ scrolling):
 </div>
 ```
 
-
-A viewport element also exposes the `currentSection` property which
-points to the section element currently displayed in the viewport
+The viewport element contains the `currentSection` property which
+points to the section element currently visible in the viewport
 (more precisely, the section which is the closest to the viewport):
 
 
@@ -158,15 +150,8 @@ points to the section element currently displayed in the viewport
 var currentSection = document.getElementById('myViewport').currentSection;
 ```
 
-
-If you are going to use the `viewport.js` library, you are likely
-about to create a navigation component. This component will be
-relevant to the particular application / web-page and therefore should
-provide more convenient navigation than the ordinary scrollbar. In
-this case it might be reasonable to replace the scrollbar with the
-[intence](http://asvd.github.io/intence) indicator: it does not
-contain active elements to control the scrolling position (but you
-don't need them anymore, since you have the custom navigation), and
-the scrollable area is designated in much more clear and intuitive way
-(comparing to an ordinary scrollbar).
+If you create a navigation panel reflecting the scrolling state,
+replace the scrollbars with [intence](http://asvd.github.io/intence)
+indicator: it designates the scrollable area in more clear and
+intuitive way comparing to the ordinary scrollbar.
 
