@@ -66,10 +66,10 @@ scrolling state in an indicator:
 
 ```js
 // use document.body if the whole page is scrollable
-var viewport = document.getElementById('myViewport');
+var myViewport = document.getElementById('myViewport');
 var firstSection = document.getElementById('firstSection');
 
-viewport.addEventListener(
+myViewport.addEventListener(
     'scroll',
     function() {
         var location = firstSection.viewportTopLocation;
