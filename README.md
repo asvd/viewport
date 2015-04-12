@@ -63,7 +63,7 @@ state in an indicator:
 
 ```js
 // use document.body if the whole page is scrollable
-var viewport = document.getElementById('viewport');
+var viewport = document.getElementById('myViewport');
 var firstSection = document.getElementById('firstSection');
 
 viewport.addEventListener(
