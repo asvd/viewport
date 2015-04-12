@@ -17,7 +17,7 @@ source](https://github.com/asvd/asvd.github.io/tree/master/viewport);
 In other words, `viewport.js` is similar to
 [other](http://davidwalsh.name/js/scrollspy)
 [scrollspy](http://getbootstrap.com/javascript/#scrollspy) [solutions]
-(https://github.com/sxalexander/jquery-scrollspy), and has the
+(https://github.com/sxalexander/jquery-scrollspy), but has the
 following advantages:
 
 - it is written on vanilla javascript, does not have dependencies and
