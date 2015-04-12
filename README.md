@@ -2,12 +2,11 @@ viewport.js
 ===========
 
 
-`viewport.js` is a small javascript library which ships the sections
-of a page with additional properties reflecting the location of a
-scrollable viewport relatively to them. Using these properties a
-custom scrolling indicator or an interactive navigation menu can
-provide incredible user experience by display the precise scrolling
-position:
+`viewport.js` is a small javascript library which ships the document
+sections with additional properties containing the viewport scrolling
+position relatively to the sections. Using these properties you can
+create a custom scrolling indicator or a navigation menu precisely
+reflecting the scrolling state:
 
 [Demo](http://asvd.github.io/viewport) / [and its
 source](https://github.com/asvd/asvd.github.io/tree/master/viewport)
@@ -15,28 +14,24 @@ source](https://github.com/asvd/asvd.github.io/tree/master/viewport)
 In other words, `viewport.js` is similar to
 [other](http://davidwalsh.name/js/scrollspy)
 [scrollspy](http://getbootstrap.com/javascript/#scrollspy) [solutions]
-(https://github.com/sxalexander/jquery-scrollspy), but the advantages
-of `viewport.js` are:
+(https://github.com/sxalexander/jquery-scrollspy), and has the
+following advantages:
 
-- it does not have any dependencies;
-
-- it is written on vanilla javascript and works anywhere;
+- it is written on vanilla javascript, does not have dependencies and
+  works anywhere;
 
 - its size is only 1581 bytes minified;
 
-- it has very simple and flexible API which exposes:
+- it has simple and flexible API which shows:
 
- - a section currently visible in the viewport;
+ - which section is currently displayed in the viewport;
 
- - current position of the viewport in both dimensions relatively to
-   every section;
+ - where is the viewport relatively to each section;
 
- - current positions of the viewport edges relatively to every
-   section;
+ - where are the viewport edges relatively to each section;
 
- - scroll targets the viewport should be scrolled to in order to
-   display a particular section (also in both dimensions and for every
-   section).
+ - where should the viewport be scrolled to in order to show a
+   particular section.
 
 
 ### Usage
