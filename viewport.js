@@ -52,29 +52,29 @@
       
       
     var reset = function() {
-        var i, j, isBody, hasViewportClass, classes,
-            listener, section, viewport, scroller, entry, sections;
+        var i=0, j, isBody, hasViewportClass, classes,
+            listener, section, viewport, scroller, entry=_null, sections;
 
         // running through existing entries and removing listeners
-        for (i = 0; i < entries[length]; i++) {
+        for (;i < entries[length];) {
             listener = entries[i].r.vpl;
-            entries[i].r[removeEventListener](scroll, listener, 0);
+            entries[i++].r[removeEventListener](scroll, listener, 0);
             _window[removeEventListener](resize, listener, 0);
         }
 
         // rebuilding entries
         entries = [];
         sections = _document.getElementsByClassName('section');
-        for (i = 0; i < sections[length]; i++) {
+        for (i = 0; i < sections[length];) {
             // searching for a parent viewport
-            viewport = section = sections[i];
-            do {
-                hasViewportClass = 0;
+            viewport = section = sections[i++];
+            while(1) {
+                hasViewportClass = j = 0;
                 isBody = viewport == _document.body;
                 if (!isBody) {
                     classes = viewport.className.split(' ');
-                    for (j = 0; j < classes[length]; j++) {
-                        if (classes[j] == VIEWPORT) {
+                    for (;j < classes[length];) {
+                        if (classes[j++] == VIEWPORT) {
                             hasViewportClass = 1;
                             break;
                         }
@@ -86,20 +86,18 @@
                 }
 
                 viewport = viewport.parentNode;
-            } while(1);
+            }
 
             // searching for exisiting entry for the viewport
-            entry = _null;
             for (j = 0; j < entries[length]; j++) {
                 if (entries[j].v == viewport) {
                     entry = entries[j];
-                    break;
                 }
             }
 
+            // creating a new entry if not found
             if (!entry) {
                 scroller = viewport.scroller||viewport;
-                // a new entry for the viewport
                 entry = {
                     v : viewport,
                     r : scroller,
@@ -107,8 +105,7 @@
                 };
 
                 // listener invoked upon the viewport scroll
-                scroller.vpl = (function(entry) {
-                return function() {
+                scroller.vpl = (function(entry) {return function() {
                     var scroller = entry.r;
                     var vRect = scroller[getBoundingClientRect]();
 
@@ -137,8 +134,8 @@
                     // (and searching for the closest section)
                     var closest = _null;
                     var minDist = _null;
-                    for (var i = 0; i < entry.s[length]; i++) {
-                        var section = entry.s[i];
+                    for (var i = 0; i < entry.s[length];) {
+                        var section = entry.s[i++];
 
                         var sRect = section[getBoundingClientRect]();
                         var sTop = sRect[top];
@@ -155,7 +152,7 @@
 
                         // viewport to section distance, normalized
                         var vVertDist =
-                            Math_max( 0, Math_abs(vTopLocation - 0.5) - 0.5);
+                            Math_max(0, Math_abs(vTopLocation - 0.5) - 0.5);
                         var vHorizDist =
                             Math_max(0, Math_abs(vLeftLocation - 0.5) - 0.5);
 
@@ -223,8 +220,8 @@
         }
 
         // initially setting-up the properties
-        for (i = 0; i < entries[length]; i++) {
-            entry.r.vpl();
+        for (i = 0; i < entries[length];) {
+            entries[i++].r.vpl();
         }
     }
 

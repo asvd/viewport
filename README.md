@@ -23,7 +23,7 @@ following advantages:
 - it is written on vanilla javascript, does not have dependencies and
   works anywhere;
 
-- its size is only 1581 bytes minified;
+- its size is only 1566 bytes minified;
 
 - it has a simple and flexible API which shows:
 
@@ -151,6 +151,9 @@ viewport):
 ```js
 var currentSection = document.getElementById('myViewport').currentSection;
 ```
+
+If you change / create the sections dynamically after the page
+load, invoke `viewport.reset()` to update the listeners.
 
 If you create a navigation panel reflecting the scrolling state,
 replace the scrollbars with [intence](http://asvd.github.io/intence)
