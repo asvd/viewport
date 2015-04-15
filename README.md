@@ -2,11 +2,12 @@ viewport.js
 ===========
 
 
-`viewport.js` is a small javascript library which ships the document
-sections with additional properties containing the viewport scrolling
-position relatively to the sections. Using these properties you can
-create a custom scrolling indicator or a navigation menu precisely
-reflecting the scrolling state:
+`viewport.js` is a small javascript library (1566 bytes minified)
+which ships the document sections with additional properties
+containing the viewport scrolling position relatively to the
+sections. Using these properties you can create a custom scrolling
+indicator or a navigation menu precisely reflecting the scrolling
+state:
 
 - [demo page](http://asvd.github.io/viewport) / [and its
 source](https://github.com/asvd/asvd.github.io/tree/master/viewport);
@@ -22,8 +23,6 @@ following advantages:
 
 - it is written on vanilla javascript, does not have dependencies and
   works anywhere;
-
-- its size is only 1566 bytes minified;
 
 - it has a simple and flexible API which shows:
 
@@ -155,8 +154,21 @@ var currentSection = document.getElementById('myViewport').currentSection;
 If you change / create the sections dynamically after the page
 load, invoke `viewport.reset()` to update the listeners.
 
+You may also have several scrollable viewports with nested sections,
+in this case the sections will contain the data related to their
+respective viewports.
+
+For the sake of performance, sections dimensions are cached upon page
+load. It is assumed that section dimensions may only change upon
+window resize, so after it happens, the cached dimensions are
+updated. But if in your application section dimensions may change for
+other reasons, invoke `viewport.updateDimensions()` after that
+happens.
+
 If you create a navigation panel reflecting the scrolling state,
 replace the scrollbars with [intence](http://asvd.github.io/intence)
 indicator: it designates a scrollable area in more clear and intuitive
 way comparing to the ordinary scrollbar.
 
+
+Follow me on twitter: https://twitter.com/asvd0

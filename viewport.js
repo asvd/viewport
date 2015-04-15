@@ -49,6 +49,47 @@
     var Math_min = _Math.min;
     var Math_max = _Math.max;
     var Math_abs = _Math.abs;
+
+
+    // updates section dimensions upon resize
+    // (to avoid calling expensive getBoundingClientRect()
+    // on each scrolling act)
+      var updateDimensions = function() {
+        var i, j, entry, section, offset, vRect, sRect;
+        for (i = 0; i < entries.length; i++) {
+            entry = entries[i];
+            vRect = entry.r.getBoundingClientRect();
+            offset = {
+                top : entry.r.scrollTop,
+                left : entry.r.scrollLeft
+            };
+
+            entry.r.rect = {
+                left   : vRect.left,
+                top    : vRect.top,
+                right  : vRect.right,
+                bottom : vRect.bottom,
+                width  : vRect.right  - vRect.left,
+                height : vRect.bottom - vRect.top,
+                scrollHeight : entry.r.scrollHeight,
+                scrollWidth  : entry.r.scrollWidth
+            }
+
+            for (j = 0; j < entry.s.length; j++) {
+                section = entry.s[j];
+                sRect = section.getBoundingClientRect();
+                // section rectangle relatively to the viewport
+                section.rect = {
+                    left   : sRect.left   - vRect.left + offset.left,
+                    top    : sRect.top    - vRect.top  + offset.top,
+                    right  : sRect.right  - vRect.left + offset.left,
+                    bottom : sRect.bottom - vRect.top  + offset.top,
+                    width  : sRect.right  - sRect.left,
+                    height : sRect.bottom - sRect.top
+                };
+            }
+        }
+    }
       
       
     var reset = function() {
@@ -107,7 +148,7 @@
                 // listener invoked upon the viewport scroll
                 scroller.vpl = (function(entry) {return function() {
                     var scroller = entry.r;
-                    var vRect = scroller[getBoundingClientRect]();
+                    var vRect = scroller.rect;
 
                     var vTop    = vRect[top];
                     var vLeft   = vRect[left];
@@ -118,8 +159,8 @@
                     var vCenter = (vLeft + vRight)/2;
 
                     // full scorlling amount
-                    var maxVert = scroller.scrollHeight - vRect.height;
-                    var maxHoriz = scroller.scrollWidth - vRect.width;
+                    var maxVert = vRect.scrollHeight - vRect.height;
+                    var maxHoriz = vRect.scrollWidth - vRect.width;
                     
                     // viewport scroll ratio, 0..1
                     var rateVert = scroller[scroll+Top] / maxVert;
@@ -130,18 +171,26 @@
                     var vMiddlePos = vTop + (vBottom-vTop)*rateVert;
                     var vCenterPos = vLeft + (vRight-vLeft)*rateHoriz;
 
+                    var offset = {
+                        top : scroller.scrollTop,
+                        left : scroller.scrollLeft
+                    }
+
                     // updating the data for each section
                     // (and searching for the closest section)
                     var closest = _null;
                     var minDist = _null;
+                                                     
                     for (var i = 0; i < entry.s[length];) {
                         var section = entry.s[i++];
 
-                        var sRect = section[getBoundingClientRect]();
-                        var sTop = sRect[top];
-                        var sLeft = sRect[left];
-                        var sHeight = sRect[bottom] - sTop;
-                        var sWidth  = sRect[right] - sLeft;
+                        var sRect = section.rect;
+                        var sTop = sRect[top] - offset.top;
+                        var sLeft = sRect[left] - offset.left;
+                        var sBottom = sRect[bottom] - offset.top;
+                        var sRight = sRect[right] - offset.left;
+                        var sHeight = sBottom - sTop;
+                        var sWidth  = sRight - sLeft;
 
                         var topOffset = vTop - sTop;
                         var leftOffset = vLeft - sLeft;
@@ -161,11 +210,11 @@
 
                         var scrollTopToStart = -topOffset - ctx;
                         var scrollTopToMiddle =
-                            (sRect[bottom] + sTop)/2 - vMiddle;
+                            (sBottom + sTop)/2 - vMiddle;
 
                         var scrollLeftToStart = -leftOffset - ctx;
                         var scrollLeftToCenter =
-                            (sLeft + sRect[right])/2 - vCenter;
+                            (sLeft + sRight)/2 - vCenter;
 
                         // updating section data concerning the viewport
                         section[VIEWPORT+Top+Start] = topOffset / sHeight;
@@ -219,6 +268,9 @@
             entry.s.push(section);
         }
 
+        updateDimensions();
+        _window[addEventListener](resize, updateDimensions, 0);
+
         // initially setting-up the properties
         for (i = 0; i < entries[length];) {
             entries[i++].r.vpl();
@@ -233,5 +285,6 @@
     }
 
     exports.reset = reset;
+    exports.updateDimensions = updateDimensions;
 }));
 
