@@ -38,10 +38,14 @@ following advantages:
 
 ### Usage
 
-Download the
-[distribution](https://github.com/asvd/viewport/releases/download/v0.0.2/viewport-0.0.2.tar.gz),
-unpack it and load the `viewport.js` in a preferable way (that is an
-UMD module):
+Download and unpack the
+[distribution](https://github.com/asvd/viewport/releases/download/v0.0.2/viewport-0.0.2.tar.gz), or install it using [Bower](http://bower.io/):
+
+```sh
+$ bower install vanilla-viewport
+```
+
+Load the `viewport.js` in a preferable way (that is an UMD module):
 
 ```html
 <script src="viewport.js"></script>
@@ -170,5 +174,6 @@ replace the scrollbars with [intence](http://asvd.github.io/intence)
 indicator: it designates a scrollable area in more clear and intuitive
 way comparing to the ordinary scrollbar.
 
+-
 
 Follow me on twitter: https://twitter.com/asvd0
