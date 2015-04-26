@@ -227,7 +227,7 @@
                         section[VIEWPORT+Left+Location] = vLeftLocation;
                         
                         section[VIEWPORT+Scroll+Top+Target] =
-                            Math.max(
+                            Math_max(
                                 0,
                                 Math_min(
                                     maxVert,
