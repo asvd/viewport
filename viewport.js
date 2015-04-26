@@ -58,7 +58,7 @@
         var i, j, entry, section, offset, vRect, sRect;
         for (i = 0; i < entries.length; i++) {
             entry = entries[i];
-            vRect = entry.r.getBoundingClientRect();
+            vRect = entry.r[getBoundingClientRect]();
             offset = {
                 top : entry.r.scrollTop,
                 left : entry.r.scrollLeft
@@ -77,7 +77,7 @@
 
             for (j = 0; j < entry.s.length; j++) {
                 section = entry.s[j];
-                sRect = section.getBoundingClientRect();
+                sRect = section[getBoundingClientRect]();
                 // section rectangle relatively to the viewport
                 section.rect = {
                     left   : sRect.left   - vRect.left + offset.left,
