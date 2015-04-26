@@ -54,7 +54,7 @@
     // updates section dimensions upon resize
     // (to avoid calling expensive getBoundingClientRect()
     // on each scrolling act)
-      var updateDimensions = function() {
+    var updateDimensions = function() {
         var i, j, entry, section, offset, vRect, sRect;
         for (i = 0; i < entries.length; i++) {
             entry = entries[i];
