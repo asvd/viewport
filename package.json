@@ -1,0 +1,33 @@
+{
+  "name": "vanilla-viewport",
+  "version": "0.0.2",
+  "homepage": "https://github.com/asvd/viewport",
+  "author": "Dmitry Prokashev <heliosframework@gmail.com>",
+  "description": "Report scrollable viewport position relatively to its contained sections",
+  "main": "viewport.js",
+  "moduleType": [
+    "amd",
+    "globals"
+  ],
+  "keywords": [
+    "scroll",
+    "scrolling",
+    "menu",
+    "navigation",
+    "indicator",
+    "location",
+    "viewport"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/asvd/viewport.git"
+  },
+  "main": "viewport.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "optionalDependencies": {},
+  "engines": {
+    "node": "*"
+  },
+  "license": "MIT"
+}
