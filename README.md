@@ -45,6 +45,12 @@ Download and unpack the
 $ bower install vanilla-viewport
 ```
 
+or npm:
+
+```sh
+$ npm install vanilla-viewport
+```
+
 Load the `viewport.js` in a preferable way (that is an UMD module):
 
 ```html
