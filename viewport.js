@@ -1,6 +1,6 @@
 /**
  * @fileoverview viewport - calculates viewport position
- * @version 0.0.4
+ * @version 0.0.5
  * 
  * @license MIT, see http://github.com/asvd/viewport
  * @copyright 2015 asvd <heliosframework@gmail.com> 
