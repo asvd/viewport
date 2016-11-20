@@ -2,7 +2,7 @@ viewport.js
 ===========
 
 
-`viewport.js` is a small javascript library (1566 bytes minified)
+`viewport.js` is a small javascript library (2152 bytes minified)
 which ships the document sections with additional properties
 containing the viewport scrolling position relatively to the
 sections. Using these properties you can create a custom scrolling
