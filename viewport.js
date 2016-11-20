@@ -163,8 +163,8 @@
                     var maxHoriz = vRect.scrollWidth - vRect.width;
                     
                     // viewport scroll ratio, 0..1
-                    var rateVert = scroller[scroll+Top] / maxVert;
-                    var rateHoriz = scroller[scroll+Left] / maxHoriz;
+                    var rateVert = maxVert ? scroller[scroll+Top] / maxVert : 0;
+                    var rateHoriz = maxHoriz ? scroller[scroll+Left] / maxHoriz : 0;
                                                       
                     // viewport location point moves along with
                     // viewport scroll to always meet the borders
