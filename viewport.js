@@ -185,10 +185,10 @@
                         var section = entry.s[i++];
 
                         var sRect = section.rect;
-                        var sTop = sRect[top] - offset.top;
-                        var sLeft = sRect[left] - offset.left;
-                        var sBottom = sRect[bottom] - offset.top;
-                        var sRight = sRect[right] - offset.left;
+                        var sTop = sRect[top] + vRect[top] - offset.top;
+                        var sLeft = sRect[left] + vRect[left] - offset.left;
+                        var sBottom = sRect[bottom] + vRect[top] - offset.top;
+                        var sRight = sRect[right] + vRect[left] - offset.left;
                         var sHeight = sBottom - sTop;
                         var sWidth  = sRight - sLeft;
 
