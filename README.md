@@ -39,7 +39,7 @@ following advantages:
 ### Usage
 
 Download and unpack the
-[distribution](https://github.com/asvd/viewport/releases/download/v0.0.5/viewport-0.0.5.tar.gz), or install it using [Bower](http://bower.io/):
+[distribution](https://github.com/asvd/viewport/releases/download/v0.0.6/viewport-0.0.6.tar.gz), or install it using [Bower](http://bower.io/):
 
 ```sh
 $ bower install vanilla-viewport
